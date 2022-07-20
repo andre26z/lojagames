@@ -1,31 +1,32 @@
 <template>
-	<div
-		class="drawer-background"
-		:class="{ show: active.product_drawer }"
-		@click="$emit('closeProductDrawer')"
-	/>
 	<div class="drawer" :class="{ show: active.product_drawer }">
-		<div class="drawer-close" @click.prevent="$emit('closeProductDrawer')">
-			X
-		</div>
 		<div v-if="product" class="product-details">
-			<h3 class="text-center">{{ product.name }}</h3>
 			<div class="product-image">
-				<img :src="product.image" style="width: 40%" />
+				<img :src="product.image"/>
 			</div>
-			<!-- <p class="description">{{ product.description }}</p> -->
-			<h3 class="text-center">R${{ product.price.toFixed(2) }}</h3>
-
-			<div class="cart-total" v-if="product_total">
-				<h3>No carrinho</h3>
-				<h4>{{ product_total }}</h4>
-			</div>
-
-			<div class="button-container">
+			<p class="text-center">
+				{{ product.name }} <br />
+				R${{ product.price.toFixed(2) }}
+				<div class="cart-total" v-if="product_total">
+				<p>{{ product_total }}</p>
 				<button class="remove" @click.prevent="removeFromCart()">
-					Remover
+					X
 				</button>
+			</div>
+			</p>
+			<!-- <p class="description">{{ product.description }}</p> -->
+			
+			<div class="button-container">
+				
 				<button class="add" @click.prevent="addToCart()">Adicionar</button>
+			</div>
+			<div class="product-details"> </div> 
+			<div class="cart-item-card">
+				<p>Subtotal: R$ {{ cart_total.toFixed(2) }}</p>
+				<p>Frete: R$ 0,00</p>
+				<p>Valor Total: R$ {{ cart_total.toFixed(2) }}</p>
+
+				<button class="view-product-button">Finalizar Compra</button>
 			</div>
 		</div>
 	</div>
@@ -47,6 +48,12 @@
 			},
 		},
 		computed: {
+			cart_total() {
+				return this.$store.getters.cartItems.reduce(
+					(a, b) => a + b.price * b.quantity,
+					0
+				);
+			},
 			product_total() {
 				return this.$store.getters.productQuantity(this.product);
 			},
@@ -54,16 +61,13 @@
 	};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.drawer-background {
-		width: 100%;
-		height: 100vh;
 		position: fixed;
 		left: 0;
 		top: 0;
-		background-color: rgba(124, 124, 124, 0.541);
 		z-index: 100;
-		display: none;
+		display: flex;
 		transition: display 0.5s;
 		&.show {
 			display: block;
@@ -78,13 +82,21 @@
 		background-color: white;
 		position: fixed;
 		top: 0;
-		left: -105vw;
+		right: -105vw;
 		padding: 15px;
-		transition: left 0.5s;
-		z-index: 101;
-		overflow-y: scroll;
+		transition: right 0.5s;
+		
+		
 		&.show {
-			left: 0;
+			right: 0;
+		}
+		.product.image {
+			width: 42px;
+			background-color: none;
+		}
+		img {
+			background: none;
+			width: 42px;
 		}
 	}
 	.drawer-close {
@@ -129,6 +141,8 @@
 	@media (min-width: 500px) {
 		.drawer {
 			width: 450px;
+			margin-top: 45px;
+			margin-right:70px;
 		}
 	}
 </style>

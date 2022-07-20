@@ -1,10 +1,10 @@
-<template>
+ <template>
 	<div class="cart-item-card">
-		<p>Subtotal: R$ {{ cart_total.toFixed(2) }}</p>
+		<p>Subtotal: R$ {{ cart_total.toFixed(2) }} <button></button></p>
 		<p>Frete: R$</p>
 		<p>Valor Total: R$ {{ cart_total.toFixed(2) }}</p>
 
-		<button class="view-product-button">Pagar com cartão de crédito</button>
+		<button class="view-product-button">Finalizar Compra</button>
 	</div>
 </template>
 
@@ -37,4 +37,4 @@
 	img {
 		width: 30%;
 	}
-</style>
+</style> 

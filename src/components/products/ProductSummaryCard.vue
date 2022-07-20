@@ -13,7 +13,7 @@
 			class="view-product-button"
 			@click.prevent="$emit('view-product', product)"
 		>
-			Ver Produto
+			Adicionar
 		</button>
 	</div>
 </template>
@@ -51,12 +51,10 @@
 	}
 	button.view-product-button {
 		padding: 10px;
-		background-color: rgb(75, 36, 148);
+		color: #3486e6;
 		border: none;
-		color: white;
 		font-weight: bold;
-		font-size: 1.15rem;
-		border-radius: 5px;
+
 		cursor: pointer;
 	}
 	@media (min-width: 500px) {

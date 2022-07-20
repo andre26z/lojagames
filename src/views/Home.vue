@@ -13,9 +13,9 @@
 				:key="i"
 				:product="item"
 				v-on:view-product="viewProduct($event)"
+				
 			/>
 		</div>
-		<cart-summary-payment-card></cart-summary-payment-card>
 	</div>
 </template>
 
@@ -37,7 +37,7 @@
 				items: items,
 				product: null,
 				active: {
-					product_drawer: false,
+					product_drawer: true,
 				},
 			};
 		},
@@ -47,7 +47,7 @@
 				this.active.product_drawer = true;
 			},
 			closeProductDrawer() {
-				this.active.product_drawer = false;
+				this.active.product_drawer = true;
 			},
 		},
 	};
@@ -65,7 +65,7 @@
 		background-color: rgba(254, 252, 255, 0.815);
 		h1 {
 			color: rgb(0, 0, 0);
-			margin-right: 90%;
+			margin-right: 78%;
 			display: inline-flex;
 		}
 		span {
@@ -81,8 +81,8 @@
 		// background-color: rgb(56, 44, 68);
 	}
 	img {
-		width: 70%;
-		background-color: rgb(221, 221, 221);
+		width: 180px;
+		background-color: #eeeeee;
 		padding: 33px;
 	}
 </style>
