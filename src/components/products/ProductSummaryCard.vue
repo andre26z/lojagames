@@ -13,7 +13,7 @@
 			class="view-product-button"
 			@click.prevent="$emit('view-product', product)"
 		>
-			Adicionar
+			Comprar
 		</button>
 	</div>
 </template>

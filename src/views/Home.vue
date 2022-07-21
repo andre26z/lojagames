@@ -1,19 +1,24 @@
 <template>
 	<div class="home">
 		<h1>GAMES</h1>
+		<p>
+			<select name="" id="">
+				<option value="">Mais jogados</option>
+			</select>
+		</p>
 
 		<ProductDescriptionDrawer
 			:product="product"
 			:active="active"
 			v-on:closeProductDrawer="closeProductDrawer()"
 		/>
+
 		<div class="product-cards-container">
 			<ProductSummaryCard
 				v-for="(item, i) in items"
 				:key="i"
 				:product="item"
 				v-on:view-product="viewProduct($event)"
-				
 			/>
 		</div>
 	</div>
@@ -66,10 +71,11 @@
 		h1 {
 			color: rgb(0, 0, 0);
 			margin-right: 78%;
-			display: inline-flex;
 		}
-		span {
+		select {
+			color: black;
 			display: inline-flex;
+			transform: translate(290px, -45px);
 		}
 	}
 	.product-cards-container {
@@ -78,6 +84,7 @@
 		justify-content: center;
 		width: 70%;
 		margin-left: -400px;
+		margin-top: -48px;
 		// background-color: rgb(56, 44, 68);
 	}
 	img {

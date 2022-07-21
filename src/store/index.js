@@ -18,6 +18,7 @@ export default createStore({
 		cartItems: (state) => {
 			return state.cart;
 		},
+		
 	},
 	mutations: {
 		addToCart(state, product) {

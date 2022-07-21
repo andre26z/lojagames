@@ -2,28 +2,28 @@
 	<div class="drawer" :class="{ show: active.product_drawer }">
 		<div v-if="product" class="product-details">
 			<div class="product-image">
-				<img :src="product.image"/>
+				<img :src="product.image" />
 			</div>
-			<p class="text-center">
+			<div class="text-center">
 				{{ product.name }} <br />
 				R${{ product.price.toFixed(2) }}
 				<div class="cart-total" v-if="product_total">
-				<p>{{ product_total }}</p>
-				<button class="remove" @click.prevent="removeFromCart()">
-					X
+					<p>{{ product_total }}</p>
+					<button class="remove" @click.prevent="removeFromCart()">X</button>
+				</div>
+			</div>
+			<!-- <p class="description">{{ product.description }}</p> -->
+
+			<div class="button-container">
+				<br />
+				<button class="add" @click.prevent="addToCart()">
+					Adicionar ao carrinho
 				</button>
 			</div>
-			</p>
-			<!-- <p class="description">{{ product.description }}</p> -->
-			
-			<div class="button-container">
-				
-				<button class="add" @click.prevent="addToCart()">Adicionar</button>
-			</div>
-			<div class="product-details"> </div> 
+			<div class="product-details"></div>
 			<div class="cart-item-card">
 				<p>Subtotal: R$ {{ cart_total.toFixed(2) }}</p>
-				<p>Frete: R$ 0,00</p>
+				<p>Frete: R$ {{ frete }}</p>
 				<p>Valor Total: R$ {{ cart_total.toFixed(2) }}</p>
 
 				<button class="view-product-button">Finalizar Compra</button>
@@ -33,9 +33,17 @@
 </template>
 
 <script>
+	import CartSummaryPaymentCard from "../cart/CartSummaryPaymentCard.vue";
+
 	export default {
+		components: {
+			CartSummaryPaymentCard,
+		},
+
 		props: ["product", "active"],
+
 		emits: ["closeProductDrawer"],
+
 		data() {
 			return {};
 		},
@@ -45,6 +53,9 @@
 			},
 			removeFromCart() {
 				this.$store.commit("removeFromCart", this.product);
+			},
+			frete() {
+				return this.$store.state.cart.frete;
 			},
 		},
 		computed: {
@@ -56,6 +67,12 @@
 			},
 			product_total() {
 				return this.$store.getters.productQuantity(this.product);
+			},
+			items() {
+				return this.$store.getters.cartItems;
+			},
+			frete() {
+				return this.$store.getters.frete;
 			},
 		},
 	};
@@ -85,18 +102,14 @@
 		right: -105vw;
 		padding: 15px;
 		transition: right 0.5s;
-		
-		
+
 		&.show {
 			right: 0;
 		}
-		.product.image {
-			width: 42px;
-			background-color: none;
-		}
+
 		img {
 			background: none;
-			width: 42px;
+			width: 70px;
 		}
 	}
 	.drawer-close {
@@ -142,7 +155,7 @@
 		.drawer {
 			width: 450px;
 			margin-top: 45px;
-			margin-right:70px;
+			margin-right: 70px;
 		}
 	}
 </style>
