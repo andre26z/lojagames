@@ -1,8 +1,11 @@
 <template>
 	
-	<div>
-		<div v-for="item in items" :key="item.id" :item="item" />
+	<div v-for="item in items" :key="item.id" :item="item">
 			<p>Valor Total: R$ {{ cart_total.toFixed(2) }}</p>
+			<div class="cart-total" v-if="product_total">
+					<p>{{ product_total }}</p>
+					<button class="remove" @click.prevent="removeFromCart()">X</button>
+				</div>
 	</div>
 </template>
 

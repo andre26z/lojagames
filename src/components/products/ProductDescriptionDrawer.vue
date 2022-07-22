@@ -1,43 +1,23 @@
 <template>
 	<div class="drawer" :class="{ show: active.product_drawer }">
-		<div v-if="product" class="product-details">
-			<div class="product-image">
-				<img :src="product.image" />
-			</div>
-			<div class="text-center">
-				{{ product.name }} <br />
-				R${{ product.price.toFixed(2) }}
-				<div class="cart-total" v-if="product_total">
-					<p>{{ product_total }}</p>
-					<button class="remove" @click.prevent="removeFromCart()">X</button>
-				</div>
-			</div>
-			<!-- <p class="description">{{ product.description }}</p> -->
-
-			<div class="button-container">
-				<br />
-				<button class="add" @click.prevent="addToCart()">
-					Adicionar ao carrinho
-				</button>
-			</div>
-			<div class="product-details"></div>
-			<div class="cart-item-card">
-				<p>Subtotal: R$ {{ cart_total.toFixed(2) }}</p>
-				<p>Frete: R$ {{ frete }}</p>
-				<p>Valor Total: R$ {{ cart_total.toFixed(2) }}</p>
-
-				<button class="view-product-button">Finalizar Compra</button>
-			</div>
+		<div class="cart-total" v-if="product_total">
+			<p>
+				<strong> Total: R$ {{ cart_total.toFixed(2) }} </strong>
+			</p>
 		</div>
+
+		<cart-item-card v-for="item in items" :key="item.id" :item="item">
+		</cart-item-card>
 	</div>
 </template>
 
 <script>
 	import CartSummaryPaymentCard from "../cart/CartSummaryPaymentCard.vue";
-
+	import CartItemCard from "../cart/CartItemCard.vue";
 	export default {
 		components: {
 			CartSummaryPaymentCard,
+			CartItemCard,
 		},
 
 		props: ["product", "active"],
@@ -54,9 +34,6 @@
 			removeFromCart() {
 				this.$store.commit("removeFromCart", this.product);
 			},
-			frete() {
-				return this.$store.state.cart.frete;
-			},
 		},
 		computed: {
 			cart_total() {
@@ -70,9 +47,6 @@
 			},
 			items() {
 				return this.$store.getters.cartItems;
-			},
-			frete() {
-				return this.$store.getters.frete;
 			},
 		},
 	};
@@ -99,55 +73,28 @@
 		background-color: white;
 		position: fixed;
 		top: 0;
-		right: -105vw;
+		right: 1vw;
 		padding: 15px;
-		transition: right 0.5s;
-
-		&.show {
-			right: 0;
-		}
 
 		img {
 			background: none;
 			width: 70px;
 		}
 	}
-	.drawer-close {
-		font-size: 1.5rem;
-		padding: 5px;
-		border-radius: 5px;
-		right: 10px;
-		border: 2px solid gray;
-		color: gray;
-		width: 15px;
-		float: right;
-		cursor: pointer;
-		&:hover {
-			background-color: lightgray;
-		}
-	}
 
-	.product-details {
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		p.description {
-			padding: 20px;
-			line-height: 1.5rem;
+	.button-container {
+		button {
+			width: 50px;
+			height: 20px;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			margin: 0 5px 50px 5px;
+			cursor: pointer;
 		}
-		.button-container {
-			button {
-				width: 150px;
-				border: none;
-				padding: 10px;
-				border-radius: 5px;
-				margin: 0 5px 50px 5px;
-				cursor: pointer;
-			}
-			button.remove {
-			}
-			button.add {
-			}
+		button.remove {
+		}
+		button.add {
 		}
 	}
 

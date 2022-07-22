@@ -7,11 +7,7 @@
 			</select>
 		</p>
 
-		<ProductDescriptionDrawer
-			:product="product"
-			:active="active"
-			v-on:closeProductDrawer="closeProductDrawer()"
-		/>
+		<ProductDescriptionDrawer :product="product" :active="active" />
 
 		<div class="product-cards-container">
 			<ProductSummaryCard
@@ -49,9 +45,6 @@
 		methods: {
 			viewProduct(product) {
 				this.product = product;
-				this.active.product_drawer = true;
-			},
-			closeProductDrawer() {
 				this.active.product_drawer = true;
 			},
 		},

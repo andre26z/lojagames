@@ -4,9 +4,10 @@
 			<div class="image">
 				<img :src="item.image" alt="" />
 			</div>
-			<h3>{{ item.name }}</h3>
-			<h4>Quantidade: {{ item.quantity }}</h4>
-			<h4>Valor Total: R${{ item_cost.toFixed(2) }}</h4>
+			<p>{{ item.name }}</p>
+			<p>Quantidade: {{ item.quantity }}</p>
+			<p>Valor Total: R${{ item_cost.toFixed(2) }}</p>
+			<button class="remove" @click.prevent="removeFromCart()">X</button>
 		</div>
 
 		<!-- <p>{{ description }}</p> -->
@@ -21,21 +22,46 @@
 				return this.item.price * this.item.quantity;
 			},
 		},
+		methods: {
+			removeFromCart() {
+				this.$store.commit("removeFromCart", this.item);
+			},
+		},
 	};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.cart-item-card {
-		width: 90%;
-		height: 100px;
-		margin: 5%;
+		width: 42px;
+		margin: -13%;
+		margin-top: -16px;
 		background-color: white;
-		padding: 10px;
 		text-align: left;
-
+		padding: 15px;
+		justify-content: space-between;
+		.remove {
+			width: 24px;
+			height: 22px;
+			align-items: baseline;
+			margin-top: 24px;
+			margin-left: 24px;
+			background-color: #3486e6;
+			border-radius: 12px;
+			color: white;
+			border-style: unset;
+			cursor: pointer;
+		}
+		p {
+			white-space: break-spaces;
+			text-align: center;
+		}
 		.header {
 			display: flex;
-			justify-content: space-around;
+			flex-direction: row;
+		}
+		img {
+			width: 42px;
+			background: none;
 		}
 	}
 </style>
