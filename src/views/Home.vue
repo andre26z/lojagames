@@ -3,7 +3,9 @@
 		<h1>GAMES</h1>
 		<p>
 			<select name="" id="">
-				<option value="">Mais jogados</option>
+				<option>organizar por score</option>
+				<option>Organizar por preço</option>
+				<option>Ordem alfabética</option>
 			</select>
 		</p>
 
@@ -24,15 +26,14 @@
 	import items from "../data/items.js";
 	import ProductSummaryCard from "../components/products/ProductSummaryCard.vue";
 	import ProductDescriptionDrawer from "../components/products/ProductDescriptionDrawer.vue";
-	import CartSummaryPaymentCard from "../components/cart/CartSummaryPaymentCard.vue";
 
 	export default {
 		name: "HomeVue",
 		components: {
 			ProductSummaryCard,
 			ProductDescriptionDrawer,
-			CartSummaryPaymentCard,
 		},
+		
 		data() {
 			return {
 				items: items,
@@ -47,7 +48,9 @@
 				this.product = product;
 				this.active.product_drawer = true;
 			},
+
 		},
+		
 	};
 </script>
 
@@ -68,7 +71,7 @@
 		select {
 			color: black;
 			display: inline-flex;
-			transform: translate(290px, -45px);
+			transform: translate(261px, -45px);
 		}
 	}
 	.product-cards-container {
@@ -84,5 +87,12 @@
 		width: 180px;
 		background-color: #eeeeee;
 		padding: 33px;
+	}
+	.asc:after {
+		content: "\25B2";
+	}
+
+	.desc:after {
+		content: "\25BC";
 	}
 </style>

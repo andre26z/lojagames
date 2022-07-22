@@ -6,9 +6,8 @@
 		<h3>
 			{{ product.name }}
 		</h3>
-		<h5 class="price">Preço: R${{ product.price.toFixed(2) }}</h5>
 		
-		<p class="text-muted">{{ product.category }}</p>
+		<h5 class="price">Preço: R${{ product.price.toFixed(2) }}</h5>
 		<button
 			class="view-product-button"
 			@click.prevent="
@@ -18,14 +17,13 @@
 		>
 			Comprar
 		</button>
-		
 	</div>
 </template>
 
 <script>
 	export default {
 		props: ["product"],
-
+		
 		methods: {
 			addToCart() {
 				this.$store.commit("addToCart", this.product);

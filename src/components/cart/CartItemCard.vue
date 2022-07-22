@@ -9,8 +9,6 @@
 			<p>Valor Total: R${{ item_cost.toFixed(2) }}</p>
 			<button class="remove" @click.prevent="removeFromCart()">X</button>
 		</div>
-
-		<!-- <p>{{ description }}</p> -->
 	</div>
 </template>
 
@@ -62,6 +60,7 @@
 		img {
 			width: 42px;
 			background: none;
+			transform: translate(7px, -13px);
 		}
 	}
 </style>

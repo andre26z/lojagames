@@ -1,13 +1,14 @@
 <template>
 	<div class="drawer" :class="{ show: active.product_drawer }">
+		<cart-item-card v-for="item in items" :key="item.id" :item="item">
+		</cart-item-card>
 		<div class="cart-total" v-if="product_total">
+			<p>Frete: {{ frete_total.toFixed(2) }}</p>
 			<p>
 				<strong> Total: R$ {{ cart_total.toFixed(2) }} </strong>
 			</p>
+			<button class="finalizarcompra">FINALIZAR COMPRA</button>
 		</div>
-
-		<cart-item-card v-for="item in items" :key="item.id" :item="item">
-		</cart-item-card>
 	</div>
 </template>
 
@@ -25,7 +26,9 @@
 		emits: ["closeProductDrawer"],
 
 		data() {
-			return {};
+			return {
+				frete: 10,
+			};
 		},
 		methods: {
 			addToCart() {
@@ -47,6 +50,14 @@
 			},
 			items() {
 				return this.$store.getters.cartItems;
+			},
+
+			frete_total() {
+				if (this.cart_total > 250) {
+					return (this.cart_total = 0);
+				} else {
+					return this.frete;
+				}
 			},
 		},
 	};
@@ -75,34 +86,34 @@
 		top: 0;
 		right: 1vw;
 		padding: 15px;
+		p {
+			text-align: start;
+		}
+		.cart-total {
+			margin-top: 42px;
+		}
 
 		img {
 			background: none;
 			width: 70px;
 		}
 	}
-
-	.button-container {
+	.cart-total {
 		button {
-			width: 50px;
-			height: 20px;
-			border: none;
 			padding: 10px;
-			border-radius: 5px;
-			margin: 0 5px 50px 5px;
 			cursor: pointer;
-		}
-		button.remove {
-		}
-		button.add {
+			float: left;
+			background-color: #3486e6;
+			border: none;
+			color: white;
+			text-align: center;
 		}
 	}
-
 	@media (min-width: 500px) {
 		.drawer {
 			width: 450px;
 			margin-top: 45px;
-			margin-right: 70px;
+			margin-right: 62px;
 		}
 	}
 </style>

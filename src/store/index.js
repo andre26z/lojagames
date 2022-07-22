@@ -18,7 +18,6 @@ export default createStore({
 		cartItems: (state) => {
 			return state.cart;
 		},
-		
 	},
 	mutations: {
 		addToCart(state, product) {
@@ -45,6 +44,7 @@ export default createStore({
 
 			updateLocalStorage(state.cart);
 		},
+
 		updateCartFromLocalStorage(state) {
 			const cart = localStorage.getItem("cart");
 			if (cart) {
