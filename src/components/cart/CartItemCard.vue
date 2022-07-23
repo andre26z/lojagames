@@ -1,3 +1,4 @@
+
 <template>
 	<div class="cart-item-card">
 		<div class="header">

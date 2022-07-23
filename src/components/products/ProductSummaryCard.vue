@@ -1,12 +1,14 @@
 <template>
+
 	<div class="card">
+		
 		<div class="image">
 			<img :src="product.image" alt="" />
 		</div>
 		<h3>
 			{{ product.name }}
 		</h3>
-		
+
 		<h5 class="price">Preço: R${{ product.price.toFixed(2) }}</h5>
 		<button
 			class="view-product-button"
@@ -23,7 +25,7 @@
 <script>
 	export default {
 		props: ["product"],
-		
+
 		methods: {
 			addToCart() {
 				this.$store.commit("addToCart", this.product);

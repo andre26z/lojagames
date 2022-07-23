@@ -1,23 +1,29 @@
+
 <template>
 	<div class="drawer" :class="{ show: active.product_drawer }">
 		<cart-item-card v-for="item in items" :key="item.id" :item="item">
 		</cart-item-card>
-		<div class="cart-total" v-if="product_total">
+
+		<div class="cart-total" v-if="cart_total > 0">
 			<p>Frete: {{ frete_total.toFixed(2) }}</p>
 			<p>
 				<strong> Total: R$ {{ cart_total.toFixed(2) }} </strong>
 			</p>
 			<button class="finalizarcompra">FINALIZAR COMPRA</button>
 		</div>
+		<div class="carrinhovazio" v-else>
+			<h1>Carrinho</h1>
+			<br />
+			<img src="../../assets/carrinhovazio.png" alt="" />
+			<h6>Até o momento o seu carrinho está vazio</h6>
+		</div>
 	</div>
 </template>
 
 <script>
-	import CartSummaryPaymentCard from "../cart/CartSummaryPaymentCard.vue";
 	import CartItemCard from "../cart/CartItemCard.vue";
 	export default {
 		components: {
-			CartSummaryPaymentCard,
 			CartItemCard,
 		},
 
@@ -54,9 +60,10 @@
 
 			frete_total() {
 				if (this.cart_total > 250) {
-					return (this.cart_total = 0);
+					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+					return (this.frete = 0);
 				} else {
-					return this.frete;
+					return (this.frete = 10);
 				}
 			},
 		},
@@ -98,6 +105,7 @@
 			width: 70px;
 		}
 	}
+
 	.cart-total {
 		button {
 			padding: 10px;

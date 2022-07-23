@@ -2,10 +2,15 @@
 	<div class="home">
 		<h1>GAMES</h1>
 		<p>
-			<select name="" id="">
-				<option>organizar por score</option>
-				<option>Organizar por preço</option>
-				<option>Ordem alfabética</option>
+			<select
+				v-model="selectedValue"
+				name=""
+				id=""
+			>
+				<option value="1">Melhores Avaliados</option>
+				<option value="2">Preço &#x2191 </option>
+				<option value="3">Preço &#x2193 </option>
+				<option value="4">Ordem alfabética</option>
 			</select>
 		</p>
 
@@ -33,7 +38,7 @@
 			ProductSummaryCard,
 			ProductDescriptionDrawer,
 		},
-		
+
 		data() {
 			return {
 				items: items,
@@ -41,6 +46,7 @@
 				active: {
 					product_drawer: true,
 				},
+				selectedValue: 1,
 			};
 		},
 		methods: {
@@ -48,9 +54,20 @@
 				this.product = product;
 				this.active.product_drawer = true;
 			},
-
 		},
-		
+		computed: {
+			items() {
+				if (this.selectedValue == 1) {
+					return this.items.sort((a, b) => b.score - a.score);
+				} else if (this.selectedValue == 2) {
+					return this.items.sort((a, b) => b.price - a.price);
+				} else if (this.selectedValue == 3) {
+					return this.items.sort((a, b) => a.price - b.price);
+				} else {
+					return this.items.sort((a, b) => a.name.localeCompare(b.name));
+				}
+			},
+		},
 	};
 </script>
 
