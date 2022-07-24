@@ -1,7 +1,5 @@
 <template>
-
 	<div class="card">
-		
 		<div class="image">
 			<img :src="product.image" alt="" />
 		</div>
@@ -44,6 +42,7 @@
 		margin: 10%;
 		padding: 10px;
 		background-color: rgb(255, 255, 255);
+		overflow: auto;
 		h5.price {
 			color: #3486e6;
 		}

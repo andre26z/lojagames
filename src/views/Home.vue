@@ -1,18 +1,17 @@
 <template>
 	<div class="home">
-		<h1>GAMES</h1>
-		<p>
-			<select
-				v-model="selectedValue"
-				name=""
-				id=""
-			>
-				<option value="1">Melhores Avaliados</option>
-				<option value="2">Preço &#x2191 </option>
-				<option value="3">Preço &#x2193 </option>
-				<option value="4">Ordem alfabética</option>
-			</select>
-		</p>
+		<div class="container">
+			<h1>GAMES</h1>
+
+			<div class="seletor">
+				<select v-model="selectedValue" name="" id="">
+					<option value="1">Mais populares</option>
+					<option value="2">Preço &#x2191;</option>
+					<option value="3">Preço &#x2193;</option>
+					<option value="4">Ordem alfabética</option>
+				</select>
+			</div>
+		</div>
 
 		<ProductDescriptionDrawer :product="product" :active="active" />
 
@@ -81,14 +80,27 @@
 
 	.home {
 		background-color: rgba(254, 252, 255, 0.815);
-		h1 {
-			color: rgb(0, 0, 0);
-			margin-right: 78%;
-		}
-		select {
-			color: black;
-			display: inline-flex;
-			transform: translate(261px, -45px);
+		.container {
+			display: flex;
+			width: 1223px;
+
+			h1 {
+				color: rgb(0, 0, 0);
+				display: inline-flex;
+				padding-left: 20px;
+				padding-right: 30px;
+			}
+			select {
+				color: #423b3b;
+				display: inline-flex;
+				height: 20px;
+				margin-top: 26px;
+				align-self: center;
+				border: #e1e1e1 solid 1px;
+				border-radius: 4px;
+				height: 32px;
+				cursor: pointer;
+			}
 		}
 	}
 	.product-cards-container {
@@ -97,8 +109,7 @@
 		justify-content: center;
 		width: 70%;
 		margin-left: -400px;
-		margin-top: -48px;
-		// background-color: rgb(56, 44, 68);
+		margin-top: -27px;
 	}
 	img {
 		width: 180px;
@@ -111,5 +122,20 @@
 
 	.desc:after {
 		content: "\25BC";
+	}
+	@media (min-width: 1441px) {
+		.container {
+			justify-content: space-between;
+		}
+		select {
+			padding-right: 124px;
+		}
+	}
+	@media (max-width: 426px) {
+		.product-cards-container {
+			width: 100%;
+			margin-left: 0;
+			margin-top: -27px;
+		}
 	}
 </style>

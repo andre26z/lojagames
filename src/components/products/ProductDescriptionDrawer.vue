@@ -1,11 +1,10 @@
-
 <template>
 	<div class="drawer" :class="{ show: active.product_drawer }">
 		<cart-item-card v-for="item in items" :key="item.id" :item="item">
 		</cart-item-card>
 
 		<div class="cart-total" v-if="cart_total > 0">
-			<p>Frete: {{ frete_total.toFixed(2) }}</p>
+			<p>Frete: {{ frete.toFixed(2) }}</p>
 			<p>
 				<strong> Total: R$ {{ cart_total.toFixed(2) }} </strong>
 			</p>
@@ -29,11 +28,9 @@
 
 		props: ["product", "active"],
 
-		emits: ["closeProductDrawer"],
-
 		data() {
 			return {
-				frete: 10,
+				frete: 0,
 			};
 		},
 		methods: {
@@ -57,15 +54,6 @@
 			items() {
 				return this.$store.getters.cartItems;
 			},
-
-			frete_total() {
-				if (this.cart_total > 250) {
-					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-					return (this.frete = 0);
-				} else {
-					return (this.frete = 10);
-				}
-			},
 		},
 	};
 </script>
@@ -77,7 +65,7 @@
 		top: 0;
 		z-index: 100;
 		display: flex;
-		transition: display 0.5s;
+
 		&.show {
 			display: block;
 		}
@@ -86,18 +74,19 @@
 		display: block;
 	}
 	.drawer {
-		width: 95vw;
+		display: flex;
+		flex-direction: column;
+		width: 450px;
+		margin-right: 62px;
 		height: 100vh;
 		background-color: white;
 		position: fixed;
 		top: 0;
 		right: 1vw;
 		padding: 15px;
+		overflow: auto;
 		p {
 			text-align: start;
-		}
-		.cart-total {
-			margin-top: 42px;
 		}
 
 		img {
@@ -117,11 +106,27 @@
 			text-align: center;
 		}
 	}
-	@media (min-width: 500px) {
+	@media (max-width: 768px) {
 		.drawer {
-			width: 450px;
-			margin-top: 45px;
-			margin-right: 62px;
+			width: 54%;
+			margin-right: 0;
+		}
+	}
+	@media (max-width: 426px) {
+		.drawer {
+			width: 127%;
+			margin-right: 0;
+			position: relative;
+			height: fit-content;
+		}
+	}
+	@media (max-width: 326px) {
+		.drawer {
+			width: 100%;
+			margin-right: 0;
+			position: relative;
+			height: fit-content;
+			display: flex;
 		}
 	}
 </style>

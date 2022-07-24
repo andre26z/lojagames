@@ -1,4 +1,3 @@
-
 <template>
 	<div class="cart-item-card">
 		<div class="header">
@@ -31,13 +30,14 @@
 
 <style lang="scss">
 	.cart-item-card {
+		display: flex;
 		width: 42px;
 		margin: -13%;
 		margin-top: -16px;
 		background-color: white;
 		text-align: left;
 		padding: 15px;
-		justify-content: space-between;
+
 		.remove {
 			width: 24px;
 			height: 22px;
@@ -53,15 +53,37 @@
 		p {
 			white-space: break-spaces;
 			text-align: center;
+			width: 104px;
 		}
 		.header {
 			display: flex;
 			flex-direction: row;
+			margin-bottom: 20px;
 		}
 		img {
 			width: 42px;
 			background: none;
 			transform: translate(7px, -13px);
+		}
+	}
+	@media (max-width: 426px) {
+		.cart-item-card {
+			img {
+				width: 42px;
+				transform: translate(18px, -13px);
+			}
+		}
+	}
+	@media (max-width: 426px) {
+		.cart-item-card {
+			padding-left: 0;
+			.header {
+				width: 90%;
+				margin-left: 42px;
+			}
+			img {
+				display: none;
+			}
 		}
 	}
 </style>
