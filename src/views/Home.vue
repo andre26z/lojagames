@@ -55,6 +55,7 @@
 			},
 		},
 		computed: {
+			
 			items() {
 				if (this.selectedValue == 1) {
 					return this.items.sort((a, b) => b.score - a.score);

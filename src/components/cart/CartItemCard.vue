@@ -45,7 +45,7 @@
 			margin-top: 24px;
 			margin-left: 24px;
 			background-color: #3486e6;
-			border-radius: 12px;
+			border-radius: 22px;
 			color: white;
 			border-style: unset;
 			cursor: pointer;

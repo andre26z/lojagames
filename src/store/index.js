@@ -7,6 +7,7 @@ function updateLocalStorage(cart) {
 export default createStore({
 	state: {
 		cart: [],
+		frete: 10,
 	},
 	getters: {
 		productQuantity: (state) => (product) => {
@@ -18,7 +19,6 @@ export default createStore({
 		cartItems: (state) => {
 			return state.cart;
 		},
-		
 	},
 	mutations: {
 		addToCart(state, product) {
@@ -34,6 +34,8 @@ export default createStore({
 		},
 		removeFromCart(state, product) {
 			let item = state.cart.find((i) => i.id === product.id);
+			// ------- se quiser remover um item por vez, apagar a linha abaixo //
+			item.quantity = 0;
 
 			if (item) {
 				if (item.quantity > 1) {

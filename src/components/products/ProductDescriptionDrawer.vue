@@ -4,7 +4,7 @@
 		</cart-item-card>
 
 		<div class="cart-total" v-if="cart_total > 0">
-			<p>Frete: {{ frete.toFixed(2) }}</p>
+			<p>Frete: {{ fretetotal.toFixed(2) }}</p>
 			<p>
 				<strong> Total: R$ {{ cart_total.toFixed(2) }} </strong>
 			</p>
@@ -53,6 +53,14 @@
 			},
 			items() {
 				return this.$store.getters.cartItems;
+			},
+
+			fretetotal() {
+				if (this.cart_total > 250) {
+					return (this.frete = 0);
+				} else {
+					return (this.frete = this.frete + 10);
+				}
 			},
 		},
 	};
