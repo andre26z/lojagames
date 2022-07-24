@@ -13,4 +13,4 @@ Baixe todos os arquivos
  <footer> Aplicação feita com Vue3, buscando uma API para renderização das imagens, não foi usado qualquer framework de CSS, apenas o pré processador SASS.
 
 Preview:
-<img src="../../assets/preview.png">
+<img src="../assets/preview.png">
