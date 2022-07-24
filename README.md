@@ -2,8 +2,8 @@
 
 Para rodar a aplicação:
 
+Baixe todos os arquivos 
 <ul>
- Baixe todos os arquivos 
 <li> no seu terminal digite: npm run serve e aperte enter</li>
 <li> após digite npm run build e aperte enter </li>
  </ul>
