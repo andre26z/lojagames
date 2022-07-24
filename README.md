@@ -9,4 +9,4 @@ Para rodar a aplicação:
 
 <strong> A aplicação poderá ser acessada através do endereço: http://localhost:8080/ </strong>
   
- <footer> aplicação feita com Vue3, buscando uma API para renderização das imagens, não foi usado qualquer framework de CSS, apenas o pré processador SASS.
+ <footer> Aplicação feita com Vue3, buscando uma API para renderização das imagens, não foi usado qualquer framework de CSS, apenas o pré processador SASS.
